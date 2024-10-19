@@ -348,6 +348,10 @@ span{
     color: var(--second-bg-color);
  }
 
+.contact{
+    background: var(--second-bg-color);
+}
+
 
  .contact h2{
 
@@ -376,7 +380,7 @@ span{
     padding: 1.5rem;
     font-size: 1.6rem;
     color: var(--text-color);
-    background: var(--second-bg-color);
+    
     border-radius: .8rem;
     margin: .7rem 0;
  }
@@ -401,8 +405,7 @@ span{
     align-items: center;
     flex-wrap: wrap;
     padding: 2rem 9%;
-    background: var(--second-bg-color);
-
+    
  }
 
  .footer-text p{
@@ -505,6 +508,10 @@ span{
 
   .toast {
     font-size: 15px; /* Adjust the size to your preference */
+}
+
+.testimonials{
+    margin-bottom: 5rem;
 }
 
  
