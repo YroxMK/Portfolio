@@ -503,6 +503,10 @@ span{
     height: 100%;
   }
 
+  .toast {
+    font-size: 15px; /* Adjust the size to your preference */
+}
+
  
 /*BREAKPOINTS*/
 

@@ -1,3 +1,14 @@
+
+$(document).ready(function() {
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "timeOut": "5000"
+    };
+});
+
+
 /*==================== toggle icon navbar ====================*/
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
@@ -68,3 +79,46 @@ const typed = new Typed('.multiple-text',{
     backDelay:1000,
     loop:true
 });
+
+
+ 
+
+/*emailSend*/
+function sendMail() {
+
+    let submitButton = document.getElementById("submit-btn");
+    submitButton.disabled = true;
+    submitButton.value = "Sending..."; // Change button text while processing
+
+
+    let subject = document.getElementById("subject").value;
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let mobile = document.getElementById("mobile").value;
+    let message = document.getElementById("message").value;
+
+    // Form validation
+    if (!subject || !name || !email || !mobile || !message) {
+        toastr.error("Please fill in all required fields.");
+         // Re-enable the submit button
+         submitButton.disabled = false;
+         submitButton.value = "Send Message"; // Reset button text
+        return;
+    }
+
+    let params = { subject, name, email, mobile, message };
+
+    emailjs.send("service_wqfc5ub", "template_rqtfq7g", params)
+    .then(function(response) {
+        toastr.success("Thank you for your email! I will get back to you soon.");
+         // Re-enable the submit button
+         submitButton.disabled = false;
+         submitButton.value = "Send Message"; // Reset button text
+    })
+    .catch(function(error) {
+        toastr.error("Failed to send your email. Please try again later.");
+         // Re-enable the submit button
+         submitButton.disabled = false;
+         submitButton.value = "Send Message"; // Reset button text
+    });
+}

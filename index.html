@@ -6,11 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yenuka Perera | Portfolio</title>
 
+    <!-- jQuery (must be included first) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- box icons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "12zH-2ZgACqwxjgtf",
+      });
+   })();
+   
+</script>
+
   </head>
 
   <body>
@@ -224,19 +244,17 @@
 
     <section class="contact" id="contact">
       <h2 class="heading">Contact <span>Me!</span></h2>
-      <form action="#">
+      <form id="contact-form">
         <div class="input-box">
-          <input type="text" placeholder="Full Name" required>
-          <input type="email" placeholder="Email Address" required>
-          
+          <input type="text" id="name" placeholder="Full Name" required>
+          <input type="email" id="email" placeholder="Email Address" required>
         </div>
         <div class="input-box">
-          <input type="number" placeholder="Mobile Number" required>
-          <input type="text" placeholder="Email Subject" required>
-           
+          <input type="number" id="mobile" placeholder="Mobile Number" required>
+          <input type="text" id="subject" placeholder="Email Subject" required>
         </div>
-        <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-        <input type="submit" value="Send Message" class="btn">
+        <textarea id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+        <input type="submit" id="submit-btn" value="Send Message" onclick="sendMail()"  class="btn">
       </form>
     </section>
 
@@ -258,5 +276,7 @@
 
     <!-- custom js -->
     <script src="js/script.js"></script>
+
+ 
   </body>
 </html>
