@@ -134,6 +134,7 @@ span{
 
 .home-content p{
     font-size: 1.6rem;
+    text-align: justify;
 
 }
 
@@ -211,6 +212,7 @@ span{
  .about-content p{
     font-size: 1.6rem;
     margin: 2rem 0 3rem;
+    text-align: justify;
 
  }
 
@@ -235,6 +237,9 @@ span{
     border-radius: 2rem;
     text-align: center;
     border: .2rem solid var(--bg-color);
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Column direction for the items inside */
+    justify-content: space-between; /* Evenly space items */
     transition: .5s ease;
 
  }
@@ -252,11 +257,14 @@ span{
 
  .services-box h3{
     font-size: 2.6rem;
+    min-height: 4rem; /* Adjust this based on your desired heading height */
  }
 
  .services-box p{
     font-size: 1.6rem;
     margin: 1rem 0 3rem;
+    min-height: 6rem; /* Adjust this based on your desired paragraph height */
+    
  }
 
 
@@ -472,11 +480,15 @@ span{
   
   .projectdetails ul li {
     list-style-type: disc;
-    margin-left: 80px;
-    padding-left: 20px;
+    margin-left: -30px;
+    padding-left: 5px;
+    padding-right: 20px;
+
   }
   
-
+.projectdetails ul li:last-child {
+    margin-bottom: 35px;
+}
 
   /* YouTube Video Section */
   .youtube-video {
@@ -512,6 +524,10 @@ span{
 
 .testimonials{
     margin-bottom: 5rem;
+}
+
+.testamonialsub{
+    margin-top: 5rem;
 }
 
  
