@@ -1,359 +1,505 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yenuka Perera | Portfolio</title>
 
-    <!-- jQuery (must be included first) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yenuka Perera | Portfolio</title>
 
-    <!-- box icons -->
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <!-- jQuery (must be included first) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <!-- box icons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
-    <!-- custom css -->
-    <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <!-- custom css -->
+  <link rel="stylesheet" href="css/style.css" />
 
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-   (function(){
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function () {
       emailjs.init({
         publicKey: "12zH-2ZgACqwxjgtf",
       });
-   })();
-   
-</script>
+    })();
 
-  </head>
+  </script>
 
-  <body>
-    <!-- header design -->
+</head>
 
-    <header class="header">
-      <a href="#" class="logo">Portfolio</a>
+<body>
+  <!-- header design -->
 
-      <i class='bx bx-menu' id="menu-icon"></i>
+  <header class="header">
+    <a href="#" class="logo">Portfolio</a>
 
-      <nav class="navbar">
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Projects</a>
-        <a href="#testimonials">Professional Endorsements</a>
-        <a href="#contact">Contact</a>
+    <i class='bx bx-menu' id="menu-icon"></i>
 
-      </nav>
- 
-    </header>
-    
-    <!-- home section design -->
+    <nav class="navbar">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Projects</a>
+      <a href="#freetools">Free Tools</a>
+      <a href="#testimonials">Professional Endorsements</a>
+      <a href="#contact">Contact</a>
 
-    <section class="home" id="home">
-        <div class="home-content">
-            <h3>Hello,It's Me</h3>
-            <h1>Yenuka Perera</h1>
-            <h3>And I'm a <span class="multiple-text"></span></h3>
-            <p>I specialize in building robust and scalable software solutions, 
-              with expertise in ASP.NET, cloud infrastructure, and database management. 
-              With a passion for solving complex technical challenges, 
-              I deliver efficient and innovative systems that drive business success.
+    </nav>
 
-              </p>
-                
-            <div class="social-media">
-                <a href="https://gitlab.com/YenukaPerera" target="_blank"><i class="bx bxl-gitlab"></i></a>
-                <a href="https://github.com/YroxMK/" target="_blank"><i class="bx bxl-github"></i></a>
-                <a href="https://www.linkedin.com/in/yenuka-madusanka-aa954464/" target="_blank"><i class="bx bxl-linkedin"></i></a>
-                <a href="https://web.facebook.com/yrox.mazz/" target="_blank"><i class="bx bxl-facebook"></i></a>
-                <a href="https://x.com/YenukaMadusanka" target="_blank"><i class="bx bxl-twitter"></i></a>
-                <a href="https://www.instagram.com/yenukaperera/" target="_blank"><i class="bx bxl-instagram-alt"></i></a>
-            </div>
-            <a href="files/YenukaPerera .pdf" target="_blank" class="btn">Download CV</a>
-        </div>
-       
-       
-        <div class="home-img">
-          <img src="images/home.png" alt="">
+  </header>
+
+  <!-- home section design -->
+
+  <section class="home" id="home">
+    <div class="home-content">
+      <h3>Hello,It's Me</h3>
+      <h1>Yenuka Perera</h1>
+      <h3>And I'm a <span class="multiple-text"></span></h3>
+      <p>I specialize in building robust and scalable software solutions,
+        with expertise in ASP.NET, cloud infrastructure, and database management.
+        With a passion for solving complex technical challenges,
+        I deliver efficient and innovative systems that drive business success.
+
+      </p>
+
+      <div class="social-media">
+        <a href="https://gitlab.com/YenukaPerera" target="_blank"><i class="bx bxl-gitlab"></i></a>
+        <a href="https://github.com/YroxMK/" target="_blank"><i class="bx bxl-github"></i></a>
+        <a href="https://www.linkedin.com/in/yenuka-madusanka-aa954464/" target="_blank"><i
+            class="bx bxl-linkedin"></i></a>
+        <a href="https://web.facebook.com/yrox.mazz/" target="_blank"><i class="bx bxl-facebook"></i></a>
+        <a href="https://x.com/YenukaMadusanka" target="_blank"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.instagram.com/yenukaperera/" target="_blank"><i class="bx bxl-instagram-alt"></i></a>
       </div>
-    </section>
+      <a href="files/Yenuka Perera.pdf  " target="_blank" class="btn">Download CV</a>
+    </div>
 
 
-    <!-- about section design -->
-    <section class="about" id="about">
-      <div class="about-img">
-        <img src="images/about.png" alt="">
+    <div class="home-img">
+      <img src="images/home.png" alt="">
+    </div>
+  </section>
+
+
+  <!-- about section design -->
+  <section class="about" id="about">
+    <div class="about-img">
+      <img src="images/about.png" alt="">
+    </div>
+
+    <div class="about-content">
+      <h2 class="heading">About <span>Me</span></h2>
+      <h3>Software Engineer</h3>
+      <p>I am Yenuka Perera, a Software Engineer with over 9 years of experience in software development, IT support,
+        and infrastructure management.
+        I have expertise in building enterprise-wide systems using C#, ASP.NET MVC, and SQL Server, among other
+        technologies.
+        I am currently working at Revotech Software Solutions, where I participate in the full software development
+        lifecycle—from requirements analysis to deployment.
+        My experience also includes IT infrastructure management, cloud services administration on Azure With a solid
+        background in both development and IT support,
+        I am well-equipped to solve complex technical challenges and drive digital transformation within organizations.
+      </p>
+      <a href="https://www.linkedin.com/in/yenuka-madusanka-aa954464/" class="btn">Check My Linkedin</a>
+    </div>
+  </section>
+
+
+  <!-- services section design -->
+
+  <section class="services" id="services">
+
+    <h2 class="heading">Services <span>I Can Provide</span></h2>
+
+    <div class="services-container">
+      <div class="services-box">
+        <i class="bx bx-code-alt"></i>
+        <h3>Web Development</h3>
+        <p>Building and deploying robust web applications using ASP.NET MVC and C#</p>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
+      <div class="services-box">
+        <i class='bx bx-layout'></i>
+        <h3>Web Design</h3>
+        <p>Crafting visually appealing and responsive websites using WordPress, HTML, CSS, and JavaScript</p>
+        <a href="#contact" class="btn">Contact</a>
       </div>
 
-      <div class="about-content">
-        <h2 class="heading">About <span>Me</span></h2>
-        <h3>Software Engineer</h3>
-        <p>I am Yenuka Perera, a Software Engineer with over 9 years of experience in software development, IT support, and infrastructure management. 
-          I have expertise in building enterprise-wide systems using C#, ASP.NET MVC, and SQL Server, among other technologies. 
-          I am currently working at Revotech Software Solutions, where I participate in the full software development lifecycle—from requirements analysis to deployment. 
-          My experience also includes IT infrastructure management, cloud services administration on Azure With a solid background in both development and IT support, 
-          I am well-equipped to solve complex technical challenges and drive digital transformation within organizations.</p>
-          <a href="https://www.linkedin.com/in/yenuka-madusanka-aa954464/" class="btn">Check My Linkedin</a>
+      <div class="services-box">
+        <i class='bx bx-desktop'></i>
+        <h3>Desktop Application Development</h3>
+        <p>Building secure and scalable desktop applications with user-friendly interfaces, tailored to business needs
+          using .NET technologies.</p>
+        <a href="#contact" class="btn">Contact</a>
       </div>
-    </section>
 
+      <div class="services-box">
+        <i class='bx bxs-data'></i>
+        <h3>Database Management</h3>
+        <p>Designing and managing databases with SQL Server and Oracle, including querying and optimization</p>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
 
-    <!-- services section design -->
+      <div class="services-box">
+        <i class='bx bx-cloud'></i>
+        <h3>Cloud Solutions</h3>
+        <p>Managing cloud infrastructure and services on Microsoft Azure</p>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
 
-    <section class="services" id="services">
+      <div class="services-box">
+        <i class='bx bx-support'></i>
+        <h3>System Support</h3>
+        <p>Providing technical support and troubleshooting for Windows environments and server administration</p>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
+      <div class="services-box">
+        <i class='bx bx-photo-album'></i>
+        <h3>Multimedia Design</h3>
+        <p>Creating visual designs and video editing using Adobe Photoshop, Illustrator, and Premiere Pro</p>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
+      <div class="services-box">
+        <i class='bx bx-book-content'></i>
+        <h3>Social Media Marketing</h3>
+        <p>I specialize in creating effective Facebook and Instagram marketing campaigns. From targeted ads to engaging
+          content, I help businesses reach their audience, increase brand awareness, and drive conversions across both
+          platforms.</p>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
+    </div>
+  </section>
 
-      <h2 class="heading">Services <span>I Can Provide</span></h2>
+  <!-- portfolio section design -->
 
-      <div class="services-container">
-        <div class="services-box">
-          <i class="bx bx-code-alt"></i>
-          <h3>Web Development</h3>
-          <p>Building and deploying robust web applications using ASP.NET MVC and C#</p>
-          <a href="#contact" class="btn">Contact</a>
-        </div>
-        <div class="services-box">
-          <i class='bx bx-layout'></i>
-          <h3>Web Design</h3>
-          <p>Crafting visually appealing and responsive websites using WordPress, HTML, CSS, and JavaScript</p>
-          <a href="#contact" class="btn">Contact</a>
-        </div>
-
-        <div class="services-box">
-          <i class='bx bx-desktop' ></i>
-          <h3>Desktop Application Development</h3>
-          <p>Building secure and scalable desktop applications with user-friendly interfaces, tailored to business needs using .NET technologies.</p>
-          <a href="#contact" class="btn">Contact</a>
-        </div>
-
-        <div class="services-box">
-          <i class='bx bxs-data'></i>
-          <h3>Database Management</h3>
-          <p>Designing and managing databases with SQL Server and Oracle, including querying and optimization</p>
-          <a href="#contact" class="btn">Contact</a>
-        </div>
-
-        <div class="services-box">
-          <i class='bx bx-cloud' ></i>
-          <h3>Cloud Solutions</h3>
-          <p>Managing cloud infrastructure and services on Microsoft Azure</p>
-          <a href="#contact" class="btn">Contact</a>
-        </div>
-
-        <div class="services-box">
-          <i class='bx bx-support' ></i>
-          <h3>System Support</h3>
-          <p>Providing technical support and troubleshooting for Windows environments and server administration</p>
-          <a href="#contact" class="btn">Contact</a>
-        </div>
-        <div class="services-box">
-          <i class='bx bx-photo-album' ></i>
-          <h3>Multimedia Design</h3>
-          <p>Creating visual designs and video editing using Adobe Photoshop, Illustrator, and Premiere Pro</p>
-          <a href="#contact" class="btn">Contact</a>
-        </div>
-        <div class="services-box">
-          <i class='bx bx-book-content'></i>
-          <h3>Social Media Marketing</h3>
-          <p>I specialize in creating effective Facebook and Instagram marketing campaigns. From targeted ads to engaging content, I help businesses reach their audience, increase brand awareness, and drive conversions across both platforms.</p>
-          <a href="#contact" class="btn">Contact</a>
+  <section class="portfolio" id="portfolio">
+    <h2 class="heading">Latest <span>Projects</span></h2>
+    <h3 class="subheading">Web Systems</h3> <!-- New subheading added -->
+    <div class="portfolio-container">
+      <div class="portfolio-box">
+        <img src="images/pas.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Paperless Approval System</h4>
+          <p>Client : Stafford Motor Co (Pvt) Ltd</p>
+          <a href="pages/paperlessproject.html"><i class="bx bx-link-external"></i></a>
         </div>
       </div>
-    </section>
-
-    <!-- portfolio section design -->
-
-    <section class="portfolio" id="portfolio">
-      <h2 class="heading">Latest <span>Projects</span></h2>
-      <h3 class="subheading">Web Systems</h3> <!-- New subheading added -->
-      <div class="portfolio-container">
-        <div class="portfolio-box">
-          <img src="images/pas.jpg" alt="">
-          <div class="portfolio-layer">
-              <h4>Paperless Approval System</h4>
-              <p>Client : Stafford Motor Co (Pvt) Ltd</p>
-              <a href="pages/paperlessproject.html"><i class="bx bx-link-external"></i></a>
-          </div>
-       </div>
-       <div class="portfolio-box">
+      <div class="portfolio-box">
         <img src="images/pms.png" alt="">
         <div class="portfolio-layer">
-            <h4>Performance Management System</h4>
-            <p>Client : Stafford Motor Co (Pvt) Ltd</p>
-            <a href="pages/pmsproject.html"><i class="bx bx-link-external"></i></a>
+          <h4>Performance Management System</h4>
+          <p>Client : Stafford Motor Co (Pvt) Ltd</p>
+          <a href="pages/pmsproject.html"><i class="bx bx-link-external"></i></a>
         </div>
-     </div>
-     <div class="portfolio-box">
-      <img src="images/portfolio3.jpg" alt="">
-      <div class="portfolio-layer">
+      </div>
+      <div class="portfolio-box">
+        <img src="images/portfolio3.jpg" alt="">
+        <div class="portfolio-layer">
           <h4>ERP System - Internal & External Operations</h4>
           <p>Client : Analytix Lanka (Pvt) Ltd</p>
           <a href="pages/erpprojectanalytix.html"><i class="bx bx-link-external"></i></a>
+        </div>
       </div>
-   </div>
-   <div class="portfolio-box">
-    <img src="images/selfcare.jpg" alt="">
-    <div class="portfolio-layer">
-        <h4>Customer Web Portal</h4>
-        <p>Client : Analytix Lanka (Pvt) Ltd</p>
-        <a href="#"><i class="bx bx-link-external"></i></a>
+      <div class="portfolio-box">
+        <img src="images/selfcare.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Customer Web Portal</h4>
+          <p>Client : Analytix Lanka (Pvt) Ltd</p>
+          <a href="#"><i class="bx bx-link-external"></i></a>
+        </div>
+      </div>
+      <div class="portfolio-box">
+        <img src="images/portfolio5.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Customer Feedback System</h4>
+          <p>Designed for : NailSpa</p>
+          <a href="pages/customerfeedbackproject.html"><i class="bx bx-link-external"></i></a>
+        </div>
+      </div>
+      <div class="portfolio-box">
+        <img src="images/epm.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Project Management System</h4>
+          <p>Client : Revolution Tech Software Solutions (Pvt) Ltd</p>
+          <a href="pages/projectmanagement.html"><i class="bx bx-link-external"></i></a>
+        </div>
+      </div>
+      <div class="portfolio-box">
+        <img src="images/mondo.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Task Management System</h4>
+          <p>Client : Mondo Migranti (Pvt) Ltd</p>
+          <a href="pages/taskmanagement.html"><i class="bx bx-link-external"></i></a>
+        </div>
+      </div>
+      <div class="portfolio-box">
+        <img src="images/portfolio10.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Medical Stock Management System</h4>
+          <p>Client : George Steuart Health</p>
+          <p>Test demo can be arranged upon request</p>
+
+        </div>
+      </div>
+
+      <div class="portfolio-box">
+        <img src="images/portfolio11.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Stock Counting System</h4>
+          <p>Client : Stafford Motor Co (Pvt) Ltd</p>
+          <p>Test demo can be arranged upon request</p>
+
+        </div>
+      </div>
+
+      <div class="portfolio-box">
+        <img src="images/portfolio12.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Dispatch Management System</h4>
+          <p>Client : Stafford Motor Co (Pvt) Ltd</p>
+          <p>Test demo can be arranged upon request</p>
+
+        </div>
+      </div>
+
+      <div class="portfolio-box">
+        <img src="images/evoPos-1.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>POS System</h4>
+          <p>Client : Public</p>
+          <p>Test demo can be arranged upon request</p>
+
+        </div>
+      </div>
+
+      <div class="portfolio-box">
+        <img src="images/Unieff.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Inventory Management System</h4>
+          <p>Client : Unieff (Pvt) Ltd</p>
+          <p>Test demo can be arranged upon request</p>
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <h3 class="subheading" style="padding-top: 2rem;">Web Sites</h3> <!-- New subheading added -->
+    <div class="portfolio-container">
+      <div class="portfolio-box">
+        <img src="images/portfolio8.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Web Site : Wordpress</h4>
+
+          <a href="https://cinnamonlakehouse.it/" target="_blank"><i class="bx bx-link-external"></i></a>
+        </div>
+      </div>
+      <div class="portfolio-box">
+        <img src="images/portfolio9.jpg" alt="">
+        <div class="portfolio-layer">
+          <h4>Web Site : HTML, CSS , JS</h4>
+
+          <a href="https://analytix.lk/" target="_blank"><i class="bx bx-link-external"></i></a>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+
+  <!-- Free Tools section design -->
+  <section class="portfolio freetools" id="freetools">
+    <h2 class="heading">Free <span>Tools</span></h2>
+    <div class="portfolio-container">
+      <div class="portfolio-box" onclick="openPdfModal()" style="cursor: pointer;">
+        <img src="images/jpg_to_pdf_thumbnail.png" alt="JPEG to PDF Converter">
+        <div class="portfolio-layer">
+          <h4>JPEG to PDF Converter</h4>
+          <p>Easily convert and merge your JPEG/PNG images into a single PDF document.</p>
+          <a href="javascript:void(0);"><i class="bx bx-file-blank"></i></a>
+        </div>
+      </div>
+
+      <!-- Singlish to Sinhala Tool -->
+      <div class="portfolio-box" onclick="openSinglishModal()" style="cursor: pointer;">
+        <img src="images/singlish_converter_thumbnail.png" alt="Singlish to Sinhala Converter">
+        <div class="portfolio-layer">
+          <h4>Singlish to Sinhala Converter</h4>
+          <p>Type in Singlish and automatically transliterate text into native Sinhala characters seamlessly.</p>
+          <a href="javascript:void(0);"><i class="bx bx-text"></i></a>
+        </div>
+      </div>
+
+      <!-- PDF Compressor Tool -->
+      <div class="portfolio-box" onclick="openCompressPdfModal()" style="cursor: pointer;">
+        <img src="images/compress_pdf.png" alt="Compress PDF Document">
+        <div class="portfolio-layer">
+          <h4>Compress PDF Document</h4>
+          <p>Instantly reduce the byte size of standard PDF documents completely offline without damaging text.</p>
+          <a href="javascript:void(0);"><i class="bx bx-compress"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Testomonials Section-->
+
+  <section class="testimonials" id="testimonials">
+    <h2 class="heading">Professional <span>Endorsements</span></h2>
+    <div class="testamonialsub" id="testamonialsub">
+
+    </div>
+    <script type="text/javascript" src="https://testimonial.to/js/iframeResizer.min.js"></script>
+    <iframe id='testimonialto-carousel-my-portfolio2-tag-all-dark'
+      src="https://embed-v2.testimonial.to/carousel/all/my-portfolio2?theme=dark&autoplay=off&showmore=on&one-row=on&same-height=off&tag=all&arrowColor=9BA9B4"
+      frameborder="0" scrolling="no" width="100%"></iframe>
+    <script
+      type="text/javascript">iFrameResize({ log: false, checkOrigin: false }, '#testimonialto-carousel-my-portfolio2-tag-all-dark');</script>
+  </section>
+
+  <!-- contact section design -->
+
+  <section class="contact" id="contact">
+    <h2 class="heading">Contact <span>Me!</span></h2>
+    <form id="contact-form">
+      <div class="input-box">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email Address" required>
+      </div>
+      <div class="input-box">
+        <input type="number" id="mobile" placeholder="Mobile Number" required>
+        <input type="text" id="subject" placeholder="Email Subject" required>
+      </div>
+      <textarea id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+      <input type="submit" id="submit-btn" value="Send Message" onclick="sendMail()" class="btn">
+    </form>
+  </section>
+
+  <!-- footer design -->
+  <footer class="footer">
+    <div class="footer-text">
+      <p>Copyright &copy; 2024 by Yenuka Perera | All Rights Reserved.</p>
+    </div>
+    <div class="footer-iconTop">
+      <a href="#home"><i class="bx bx-up-arrow-alt"></i></a>
+    </div>
+  </footer>
+
+
+
+  <!-- modal design for JPG to PDF Converter -->
+  <div class="pdf-modal-overlay" id="pdfModalOverlay">
+    <div class="pdf-modal">
+      <div class="pdf-modal-header">
+        <h3>JPEG to PDF Converter</h3>
+        <i class='bx bx-x' id="closePdfModal" onclick="closePdfModal()"></i>
+      </div>
+      <div class="pdf-modal-body">
+        <div class="drag-drop-area" id="dragDropArea">
+          <i class='bx bx-cloud-upload'></i>
+          <p>Drag & Drop your JPG/PNG files here</p>
+          <span>or</span>
+          <br>
+          <button type="button" class="btn browse-btn" onclick="document.getElementById('fileInput').click()">Browse
+            Files</button>
+          <input type="file" id="fileInput" multiple accept=".jpg, .jpeg, .png" hidden>
+        </div>
+        <div class="file-preview-container" id="filePreviewContainer">
+          <!-- Files will be previewed here -->
+        </div>
+      </div>
+      <div class="pdf-modal-footer">
+        <button type="button" class="btn" id="convertBtn" onclick="convertToPdf()" disabled>Convert to PDF</button>
+      </div>
     </div>
   </div>
- <div class="portfolio-box">
-  <img src="images/portfolio5.jpg" alt="">
-  <div class="portfolio-layer">
-      <h4>Customer Feedback System</h4>
-      <p>Designed for : NailSpa</p>
-      <a href="pages/customerfeedbackproject.html"><i class="bx bx-link-external"></i></a>
-  </div>
-</div>
-<div class="portfolio-box">
-  <img src="images/epm.jpg" alt="">
-  <div class="portfolio-layer">
-      <h4>Project Management System</h4>
-      <p>Client : Revolution Tech Software Solutions (Pvt) Ltd</p>
-      <a href="pages/projectmanagement.html"><i class="bx bx-link-external"></i></a>
-  </div>
-</div>
-<div class="portfolio-box">
-  <img src="images/mondo.jpg" alt="">
-  <div class="portfolio-layer">
-      <h4>Task Management System</h4>
-      <p>Client : Mondo Migranti (Pvt) Ltd</p>
-      <a href="pages/taskmanagement.html"><i class="bx bx-link-external"></i></a>
-  </div>
-</div>
-<div class="portfolio-box">
-  <img src="images/portfolio10.jpg" alt="">
-  <div class="portfolio-layer">
-      <h4>Medical Stock Management System</h4>
-      <p>Client : George Steuart Health</p>
-      <p>Test demo can be arranged upon request</p>
-      
-  </div>
-</div>
- 
-<div class="portfolio-box">
-   <img src="images/portfolio11.jpg" alt="">
-     <div class="portfolio-layer">
-            <h4>Stock Counting System</h4>
-            <p>Client : Stafford Motor Co (Pvt) Ltd</p>
-            <p>Test demo can be arranged upon request</p>
-      
+
+  <!-- modal design for Singlish to Sinhala Converter -->
+  <div class="pdf-modal-overlay" id="singlishModalOverlay">
+    <div class="pdf-modal singlish-modal">
+      <div class="pdf-modal-header">
+        <h3>Singlish to Sinhala</h3>
+        <i class='bx bx-x' id="closeSinglishModal" onclick="closeSinglishModal()"></i>
       </div>
-</div>
-
-<div class="portfolio-box">
-   <img src="images/portfolio12.jpg" alt="">
-     <div class="portfolio-layer">
-            <h4>Dispatch Management System</h4>
-            <p>Client : Stafford Motor Co (Pvt) Ltd</p>
-           <p>Test demo can be arranged upon request</p>
-      
+      <div class="pdf-modal-body singlish-converter-body">
+        <div class="text-area-container" style="position: relative;">
+          <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-bottom:0.5rem;">
+            <label for="singlishInput" style="margin-bottom:0;">Type in Singlish</label>
+            <i class='bx bx-smile' id="emojiBtn" title="Insert Emoji" onclick="toggleEmojiPicker(event)"
+              style="cursor:pointer; color:var(--main-color); font-size: 2.2rem;"></i>
+          </div>
+          <textarea id="singlishInput" placeholder="ex: aayubowan..." onkeyup="startText()"
+            oninput="startText()"></textarea>
+          <div id="emojiPickerWrapper" style="display: none; position: absolute; right: 0; top: 35px; z-index: 2000; width: 250px; background: var(--bg-color); border: 1px solid var(--main-color); border-radius: 8px; padding: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+            <div id="nativeEmojiGrid" style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 2rem; justify-content: space-between;">
+                <!-- Emojis will be dynamically added here -->
+            </div>
+          </div>
+        </div>
+        <div class="text-area-container">
+          <label for="sinhalaOutput" style="display:flex; justify-content:space-between;">
+            Sinhala Output
+            <i class='bx bx-copy' title="Copy to Clipboard" onclick="copySinhala()"
+              style="cursor:pointer; color:var(--main-color);"></i>
+          </label>
+          <textarea id="sinhalaOutput" readonly placeholder="Output will appear here..."></textarea>
+        </div>
       </div>
-</div>
-
-<div class="portfolio-box">
-   <img src="images/evoPos-1.jpg" alt="">
-     <div class="portfolio-layer">
-            <h4>POS System</h4>
-            <p>Client : Public</p>
-           <p>Test demo can be arranged upon request</p>
-      
+      <div class="pdf-modal-footer">
+        <button type="button" class="btn" onclick="copySinhala()">Copy Text</button>
       </div>
-</div>
-
-<div class="portfolio-box">
-   <img src="images/Unieff.jpg" alt="">
-     <div class="portfolio-layer">
-            <h4>Inventory Management System</h4>
-            <p>Client : Unieff (Pvt) Ltd</p>
-            <p>Test demo can be arranged upon request</p>
-      
-      </div>
-</div>
-
-
- 
-</div>
-
-<h3 class="subheading" style="padding-top: 2rem;">Web Sites</h3> <!-- New subheading added -->
-<div class="portfolio-container">
-  <div class="portfolio-box">
-    <img src="images/portfolio8.jpg" alt="">
-    <div class="portfolio-layer">
-        <h4>Web Site : Wordpress</h4>
-        
-        <a href="https://cinnamonlakehouse.it/" target="_blank"><i class="bx bx-link-external"></i></a>
     </div>
- </div>
- <div class="portfolio-box">
-  <img src="images/portfolio9.jpg" alt="">
-  <div class="portfolio-layer">
-      <h4>Web Site : HTML, CSS , JS</h4>
-      
-      <a href="https://analytix.lk/" target="_blank"><i class="bx bx-link-external"></i></a>
   </div>
-</div>
-</div>
 
-
-    </section>
-
-    <!--Testomonials Section-->
-
-    <section class="testimonials" id="testimonials">
-      <h2 class="heading">Professional <span>Endorsements</span></h2>
-     <div class="testamonialsub" id="testamonialsub"> 
-
+  <div class="pdf-modal-overlay" id="compressPdfModalOverlay">
+    <div class="pdf-modal">
+      <div class="pdf-modal-header">
+        <h3>Compress PDF Document</h3>
+        <i class='bx bx-x' id="closeCompressPdfModal" onclick="closeCompressPdfModal()"></i>
       </div>
-      <script type="text/javascript" src="https://testimonial.to/js/iframeResizer.min.js"></script>
-      <iframe id='testimonialto-carousel-my-portfolio2-tag-all-dark' src="https://embed-v2.testimonial.to/carousel/all/my-portfolio2?theme=dark&autoplay=off&showmore=on&one-row=on&same-height=off&tag=all&arrowColor=9BA9B4" frameborder="0" scrolling="no" width="100%"></iframe>
-      <script type="text/javascript">iFrameResize({log: false, checkOrigin: false}, '#testimonialto-carousel-my-portfolio2-tag-all-dark');</script>
-    </section>
-
-    <!-- contact section design -->
-
-    <section class="contact" id="contact">
-      <h2 class="heading">Contact <span>Me!</span></h2>
-      <form id="contact-form">
-        <div class="input-box">
-          <input type="text" id="name" placeholder="Full Name" required>
-          <input type="email" id="email" placeholder="Email Address" required>
+      <div class="pdf-modal-body">
+        <div class="drag-drop-area" id="compressDragDropArea">
+          <i class='bx bx-cloud-upload'></i>
+          <p>Drag and Drop highly-bloated PDF here<br>or click to select</p>
+          <input type="file" id="compressFileInput" accept="application/pdf" style="display: none;">
         </div>
-        <div class="input-box">
-          <input type="number" id="mobile" placeholder="Mobile Number" required>
-          <input type="text" id="subject" placeholder="Email Subject" required>
-        </div>
-        <textarea id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
-        <input type="submit" id="submit-btn" value="Send Message" onclick="sendMail()"  class="btn">
-      </form>
-    </section>
-
-    <!-- footer design -->
-    <footer class="footer">
-      <div class="footer-text">
-        <p>Copyright &copy; 2024 by Yenuka Perera | All Rights Reserved.</p>
+        <div class="selected-files" id="compressSelectedPdfInfo"></div>
       </div>
-      <div class="footer-iconTop">
-        <a href="#home"><i class="bx bx-up-arrow-alt"></i></a> 
+      <div class="pdf-modal-footer">
+        <button class="btn" id="compressPdfBtn" style="width: 100%; display: none;" onclick="processCompressPdf()">Compress & Download</button>
       </div>
-    </footer>
+    </div>
+  </div>
 
-    <!-- scroll reveal -->
-    <script src="https://unpkg.com/scrollreveal"></script>
+  <!-- scroll reveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
 
-    <!-- typed js -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- PDF libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+  </script>
 
-    <!-- custom js -->
-    <script src="js/script.js"></script>
+  <!-- typed js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
- 
-  </body>
+  <!-- custom js -->
+  <script src="js/script.js"></script>
+
+</body>
+
 </html>
