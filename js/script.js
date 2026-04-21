@@ -156,6 +156,11 @@ window.onclick = function (event) {
     if (singlishModalOverlay && event.target == singlishModalOverlay) {
         closeSinglishModal();
     }
+
+    let mergePdfModalOverlay = document.getElementById('mergePdfModalOverlay');
+    if (mergePdfModalOverlay && event.target == mergePdfModalOverlay) {
+        closeMergePdfModal();
+    }
 };
 
 // Prevent default drag behaviors
@@ -638,5 +643,261 @@ async function processCompressPdf() {
                 <strong>Error formatting document. Ensure your API key is valid.</strong>
             </div>
         `;
+    }
+}
+
+/*==================== Merge PDF Logic ====================*/
+let mergeFiles = []; // Array of { file, name }
+
+function openMergePdfModal() {
+    document.getElementById('mergePdfModalOverlay').classList.add('active');
+}
+
+function closeMergePdfModal() {
+    document.getElementById('mergePdfModalOverlay').classList.remove('active');
+    mergeFiles = [];
+    renderMergeFileList();
+    document.getElementById('mergeStatus').innerHTML = '';
+    const btn = document.getElementById('mergePdfBtn');
+    btn.style.display = 'none';
+    btn.innerHTML = '<i class="bx bx-git-merge"></i> Merge & Download PDF';
+    btn.disabled = false;
+}
+
+// --- Drop zone setup ---
+const mergeDragDropArea = document.getElementById('mergeDragDropArea');
+const mergeFileInput = document.getElementById('mergeFileInput');
+
+if (mergeDragDropArea && mergeFileInput) {
+    mergeDragDropArea.addEventListener('click', () => mergeFileInput.click());
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(ev =>
+        mergeDragDropArea.addEventListener(ev, preventDefaults, false));
+
+    ['dragenter', 'dragover'].forEach(ev =>
+        mergeDragDropArea.addEventListener(ev, () => mergeDragDropArea.classList.add('highlight')));
+
+    ['dragleave', 'drop'].forEach(ev =>
+        mergeDragDropArea.addEventListener(ev, () => mergeDragDropArea.classList.remove('highlight')));
+
+    mergeDragDropArea.addEventListener('drop', e => {
+        addMergeFiles(e.dataTransfer.files);
+    });
+
+    mergeFileInput.addEventListener('change', function () {
+        addMergeFiles(this.files);
+        this.value = '';
+    });
+}
+
+function addMergeFiles(fileList) {
+    const allowed = ['application/pdf',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'image/jpeg', 'image/png', 'image/jpg'];
+
+    Array.from(fileList).forEach(file => {
+        const type = file.type.toLowerCase();
+        const name = file.name.toLowerCase();
+        if (!allowed.includes(type) && !name.endsWith('.docx')) {
+            toastr.warning(`Skipped unsupported file: ${file.name}`);
+            return;
+        }
+        mergeFiles.push({ file, name: file.name });
+    });
+
+    renderMergeFileList();
+}
+
+function getFileMergeIcon(filename) {
+    const n = filename.toLowerCase();
+    if (n.endsWith('.pdf')) return '<i class="bx bxs-file-pdf" style="color:#e74c3c;"></i>';
+    if (n.endsWith('.docx') || n.endsWith('.doc')) return '<i class="bx bxs-file-doc" style="color:#2980b9;"></i>';
+    return '<i class="bx bxs-image" style="color:#27ae60;"></i>';
+}
+
+function renderMergeFileList() {
+    const ul = document.getElementById('mergeFileItems');
+    const listWrap = document.getElementById('mergeFileList');
+    const btn = document.getElementById('mergePdfBtn');
+
+    ul.innerHTML = '';
+
+    if (mergeFiles.length === 0) {
+        listWrap.style.display = 'none';
+        btn.style.display = 'none';
+        return;
+    }
+
+    listWrap.style.display = 'block';
+    btn.style.display = 'block';
+
+    mergeFiles.forEach((item, idx) => {
+        const li = document.createElement('li');
+        li.dataset.index = idx;
+        li.draggable = true;
+        li.style.cssText = `
+            display:flex; align-items:center; gap:10px;
+            padding:10px 14px; margin-bottom:8px;
+            background:var(--second-bg-color);
+            border:1px solid var(--main-color);
+            border-radius:8px; cursor:grab;
+            font-size:1.4rem; color:var(--text-color);
+            transition: background 0.2s;
+        `;
+        li.innerHTML = `
+            <span style="font-size:2rem; line-height:1;">${getFileMergeIcon(item.name)}</span>
+            <span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${item.name}">${item.name}</span>
+            <span style="background:var(--bg-color); padding:2px 8px; border-radius:4px; font-size:1.2rem; color:var(--main-color); flex-shrink:0;">#${idx + 1}</span>
+            <i class='bx bx-x' onclick="removeMergeFile(${idx})" style="cursor:pointer; color:#e74c3c; font-size:2rem; flex-shrink:0;"></i>
+        `;
+
+        // Drag-to-reorder
+        li.addEventListener('dragstart', e => {
+            e.dataTransfer.setData('text/plain', idx);
+            li.style.opacity = '0.5';
+        });
+        li.addEventListener('dragend', () => li.style.opacity = '1');
+        li.addEventListener('dragover', e => {
+            e.preventDefault();
+            li.style.background = 'rgba(0,150,255,0.12)';
+        });
+        li.addEventListener('dragleave', () => li.style.background = '');
+        li.addEventListener('drop', e => {
+            e.preventDefault();
+            li.style.background = '';
+            const fromIdx = parseInt(e.dataTransfer.getData('text/plain'));
+            const toIdx = idx;
+            if (fromIdx !== toIdx) {
+                const moved = mergeFiles.splice(fromIdx, 1)[0];
+                mergeFiles.splice(toIdx, 0, moved);
+                renderMergeFileList();
+            }
+        });
+
+        ul.appendChild(li);
+    });
+}
+
+function removeMergeFile(idx) {
+    mergeFiles.splice(idx, 1);
+    renderMergeFileList();
+}
+
+async function processMergePdf() {
+    if (mergeFiles.length === 0) return;
+
+    const btn = document.getElementById('mergePdfBtn');
+    const statusEl = document.getElementById('mergeStatus');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Merging...';
+
+    try {
+        const { PDFDocument, rgb, StandardFonts } = PDFLib;
+        const mergedPdf = await PDFDocument.create();
+
+        for (let i = 0; i < mergeFiles.length; i++) {
+            const item = mergeFiles[i];
+            const file = item.file;
+            const fname = item.name.toLowerCase();
+
+            statusEl.innerHTML = `
+                <div style="font-size:1.4rem; color:var(--text-color); margin-top:0.5rem;">
+                    Processing ${i + 1} of ${mergeFiles.length}: <strong>${item.name}</strong>
+                    <div style="width:100%; background:var(--bg-color); border:1px solid var(--main-color); border-radius:5px; margin-top:8px; height:8px; overflow:hidden;">
+                        <div style="width:${Math.round((i / mergeFiles.length) * 100)}%; background:var(--main-color); height:100%; transition:width 0.3s;"></div>
+                    </div>
+                </div>`;
+            await new Promise(r => setTimeout(r, 30));
+
+            if (fname.endsWith('.pdf')) {
+                // PDF: copy all pages directly
+                const arrayBuf = await file.arrayBuffer();
+                const srcPdf = await PDFDocument.load(arrayBuf, { ignoreEncryption: true });
+                const pages = await mergedPdf.copyPages(srcPdf, srcPdf.getPageIndices());
+                pages.forEach(p => mergedPdf.addPage(p));
+
+            } else if (fname.endsWith('.docx')) {
+                // Word: extract raw text via mammoth, lay out as text pages
+                const arrayBuf = await file.arrayBuffer();
+                const result = await mammoth.extractRawText({ arrayBuffer: arrayBuf });
+                const text = result.value || '';
+                const lines = text.split('\n');
+                const LINES_PER_PAGE = 45;
+                const chunks = [];
+                for (let l = 0; l < lines.length; l += LINES_PER_PAGE) {
+                    chunks.push(lines.slice(l, l + LINES_PER_PAGE).join('\n'));
+                }
+                if (chunks.length === 0) chunks.push('');
+
+                const font = await mergedPdf.embedFont(StandardFonts.Helvetica);
+                for (const chunk of chunks) {
+                    const page = mergedPdf.addPage([595, 842]); // A4
+                    page.drawText(chunk || ' ', {
+                        x: 50, y: 780,
+                        size: 11, font,
+                        color: rgb(0.1, 0.1, 0.1),
+                        maxWidth: 495,
+                        lineHeight: 16,
+                    });
+                }
+
+            } else {
+                // Image (JPEG / PNG): embed and fit to A4
+                const arrayBuf = await file.arrayBuffer();
+                let embeddedImg;
+                if (fname.endsWith('.png')) {
+                    embeddedImg = await mergedPdf.embedPng(arrayBuf);
+                } else {
+                    embeddedImg = await mergedPdf.embedJpg(arrayBuf);
+                }
+                const { width, height } = embeddedImg.scaleToFit(555, 802);
+                const imgPage = mergedPdf.addPage([595, 842]);
+                imgPage.drawImage(embeddedImg, {
+                    x: (595 - width) / 2,
+                    y: (842 - height) / 2,
+                    width, height,
+                });
+            }
+        }
+
+        // Final save
+        statusEl.innerHTML = `
+            <div style="font-size:1.4rem; color:var(--text-color); margin-top:0.5rem;">
+                Building final PDF...
+                <div style="width:100%; background:var(--bg-color); border:1px solid var(--main-color); border-radius:5px; margin-top:8px; height:8px; overflow:hidden;">
+                    <div style="width:100%; background:var(--main-color); height:100%;"></div>
+                </div>
+            </div>`;
+        await new Promise(r => setTimeout(r, 50));
+
+        const mergedBytes = await mergedPdf.save();
+        const blob = new Blob([mergedBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'merged_document.pdf';
+        document.body.appendChild(a);
+        a.click();
+
+        const totalPages = mergedPdf.getPageCount();
+        const sizeMB = (mergedBytes.length / (1024 * 1024)).toFixed(2);
+
+        statusEl.innerHTML = `
+            <div style="font-size:1.5rem; color:#28a745; margin-top:0.5rem;">
+                <i class='bx bx-check-circle'></i>
+                Merged ${mergeFiles.length} file(s) into ${totalPages} page(s) &mdash; ${sizeMB} MB
+            </div>`;
+
+        setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 200);
+        toastr.success('PDF merged and downloaded!');
+
+        btn.innerHTML = '<i class="bx bx-check"></i> Downloaded!';
+        setTimeout(closeMergePdfModal, 3000);
+
+    } catch (err) {
+        console.error('Merge error:', err);
+        toastr.error('Failed to merge: ' + (err.message || err));
+        btn.innerHTML = '<i class="bx bx-git-merge"></i> Merge & Download PDF';
+        btn.disabled = false;
     }
 }

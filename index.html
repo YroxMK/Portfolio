@@ -63,6 +63,9 @@
     <div class="home-content">
       <h3>Hello,It's Me</h3>
       <h1>Yenuka Perera</h1>
+      <h3
+        style="font-size: 1.6rem; color: var(--main-color); font-weight: 500; margin-top: -0.5rem; margin-bottom: 0.5rem;">
+        MSc in IT &amp; Strategic Innovation</h3>
       <h3>And I'm a <span class="multiple-text"></span></h3>
       <p>I specialize in building robust and scalable software solutions,
         with expertise in ASP.NET, cloud infrastructure, and database management.
@@ -98,15 +101,17 @@
 
     <div class="about-content">
       <h2 class="heading">About <span>Me</span></h2>
-      <h3>Software Engineer</h3>
+
       <p>I am Yenuka Perera, a Software Engineer with over 9 years of experience in software development, IT support,
         and infrastructure management.
+        I hold a <strong>Master of Science in IT &amp; Strategic Innovation (MSc)</strong> from Kingston University, UK,
+        completed via ESOFT Metro Campus, Sri Lanka.
         I have expertise in building enterprise-wide systems using C#, ASP.NET MVC, and SQL Server, among other
         technologies.
         I am currently working at Revotech Software Solutions, where I participate in the full software development
         lifecycle—from requirements analysis to deployment.
-        My experience also includes IT infrastructure management, cloud services administration on Azure With a solid
-        background in both development and IT support,
+        My experience also includes IT infrastructure management and cloud services administration on Azure.
+        With a solid background in both development and IT support,
         I am well-equipped to solve complex technical challenges and drive digital transformation within organizations.
       </p>
       <a href="https://www.linkedin.com/in/yenuka-madusanka-aa954464/" class="btn">Check My Linkedin</a>
@@ -381,6 +386,16 @@
           <a href="javascript:void(0);"><i class="bx bx-compress"></i></a>
         </div>
       </div>
+
+      <!-- Merge PDF Tool -->
+      <div class="portfolio-box" onclick="openMergePdfModal()" style="cursor: pointer;">
+        <img src="images/merge_pdf.png" alt="Merge PDF Documents">
+        <div class="portfolio-layer">
+          <h4>Merge PDF Documents</h4>
+          <p>Combine PDFs, Word documents, and images into a single PDF. Drag to reorder before merging.</p>
+          <a href="javascript:void(0);"><i class="bx bx-git-merge"></i></a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -517,6 +532,43 @@
     </div>
   </div>
 
+  <!-- Merge PDF Modal -->
+  <div class="pdf-modal-overlay" id="mergePdfModalOverlay">
+    <div class="pdf-modal" style="max-width: 700px;">
+      <div class="pdf-modal-header">
+        <h3>Merge Files into PDF</h3>
+        <i class='bx bx-x' onclick="closeMergePdfModal()" style="cursor:pointer; font-size:2.5rem;"></i>
+      </div>
+      <div class="pdf-modal-body">
+
+        <!-- Drop Zone -->
+        <div class="drag-drop-area" id="mergeDragDropArea">
+          <i class='bx bx-cloud-upload'></i>
+          <p>Drag &amp; Drop PDF, Word (.docx), or Image files here<br>or click to select</p>
+          <input type="file" id="mergeFileInput" multiple
+            accept=".pdf,application/pdf,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/jpeg,image/png,image/jpg"
+            style="display:none;">
+        </div>
+
+        <!-- File List (drag to reorder) -->
+        <div id="mergeFileList" style="margin-top:1.5rem; display:none;">
+          <p style="font-size:1.4rem; color:var(--text-color); margin-bottom:0.8rem;">
+            <i class='bx bx-move' style="color:var(--main-color);"></i>
+            Drag rows to reorder &mdash; order determines merge sequence
+          </p>
+          <ul id="mergeFileItems" style="list-style:none; padding:0; margin:0;"></ul>
+        </div>
+
+        <div id="mergeStatus" style="margin-top:1rem;"></div>
+      </div>
+      <div class="pdf-modal-footer">
+        <button class="btn" id="mergePdfBtn" style="width:100%; display:none;" onclick="processMergePdf()">
+          <i class='bx bx-git-merge'></i> Merge &amp; Download PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- scroll reveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
 
@@ -527,6 +579,8 @@
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
   </script>
+  <!-- Mammoth.js for Word (.docx) reading -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 
   <!-- typed js -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
